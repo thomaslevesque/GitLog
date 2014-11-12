@@ -17,6 +17,24 @@ namespace GitLog
             set { Set(ref _repository, value); }
         }
 
+        private object _selectedNode;
+        public object SelectedNode
+        {
+            get { return _selectedNode; }
+            set
+            {
+                if (Set(ref _selectedNode, value))
+                    SelectedCommit = value as CommitViewModel;
+            }
+        }
+
+        private CommitViewModel _selectedCommitViewModel;
+        public CommitViewModel SelectedCommit
+        {
+            get { return _selectedCommitViewModel; }
+            set { Set(ref _selectedCommitViewModel, value); }
+        }
+
         public ICommand OpenRepositoryCommand
         {
             get

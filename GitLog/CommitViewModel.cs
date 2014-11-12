@@ -71,6 +71,11 @@ namespace GitLog
             get { return _authorDate; }
         }
 
+        public string AuthorInfo
+        {
+            get { return string.Format("{0} ({1}) - {2}", _authorName, _authorEmail, _authorDate); }
+        }
+
         private readonly string _committerName;
         public string CommiterName
         {
@@ -87,6 +92,11 @@ namespace GitLog
         public DateTimeOffset CommitterDate
         {
             get { return _committerDate; }
+        }
+
+        public string CommitterInfo
+        {
+            get { return string.Format("{0} ({1}) - {2}", _committerName, _committerEmail, _committerDate); }
         }
 
         private static readonly SubmoduleChangesViewModelBase[] _preLoadSubmodules = {new DummySubmoduleChangesViewModel()};
