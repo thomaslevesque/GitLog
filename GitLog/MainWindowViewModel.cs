@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows.Input;
+using GitLog.Properties;
 using GitLog.Services;
 
 namespace GitLog
@@ -7,6 +8,15 @@ namespace GitLog
     [Export]
     public class MainWindowViewModel : ObservableBase
     {
+        public void Initialize()
+        {
+            string lastRepo = Settings.Default.LastOpenedRepo;
+            if (!string.IsNullOrEmpty(lastRepo))
+            {
+                Repository = new RepositoryViewModel(lastRepo);
+            }
+        }
+
         [Import]
         public IFilePickerService FilePicker { get; set; }
 
@@ -52,6 +62,8 @@ namespace GitLog
             if (path != null)
             {
                 Repository = new RepositoryViewModel(path);
+                Settings.Default.LastOpenedRepo = path;
+                Settings.Default.Save();
             }
         }
     }

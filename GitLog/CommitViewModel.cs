@@ -77,13 +77,13 @@ namespace GitLog
         }
 
         private readonly string _committerName;
-        public string CommiterName
+        public string CommitterName
         {
             get { return _committerName; }
         }
 
         private readonly string _committerEmail;
-        public string CommiterEmail
+        public string CommitterEmail
         {
             get { return _committerEmail; }
         }
